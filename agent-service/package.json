@@ -1,0 +1,8 @@
+{
+  "name": "gauntlet-agent-endpoint",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node api/inference.js"
+  }
+}

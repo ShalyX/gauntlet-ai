@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GauntletAI — On-Chain Adversarial Agent Alignment Protocol</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23111a4a'/><text x='50%25' y='68%25' font-family='sans-serif' font-weight='bold' font-size='20' fill='white' text-anchor='middle'>G</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Subtle Halftone Background -->
+  <div class="hero-halftone-bg"></div>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-group" data-switch-view="overview">
+        <div class="brand-glyph">G</div>
+        <div class="brand-name">GauntletAI</div>
+        <div class="brand-badge">PROTOCOL</div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu" id="desktopNavMenu">
+          <li><button type="button" class="nav-tab-btn active" data-view="overview">Overview</button></li>
+          <li><button type="button" class="nav-tab-btn" data-view="arena">Adversarial Arena</button></li>
+          <li><button type="button" class="nav-tab-btn" data-view="registry">Agent Directory</button></li>
+          <li><button type="button" class="nav-tab-btn" data-view="developers">Developers</button></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <button class="btn-wallet-connect" id="btnHeaderConnectWallet" title="Connect MetaMask on GenLayer StudioNet">
+          <span class="wallet-dot" id="headerWalletDot"></span>
+          <span id="headerWalletText">Connect Wallet</span>
+        </button>
+        <button class="btn-secondary-outline btn-sm" id="btnClaimBountyNav" style="display: none;" title="Claim accumulated dispute bounties or refunds">
+          <span>Claim Bounty</span>
+          <span id="pendingBountyNavBadge" style="font-family: var(--font-mono); font-weight: 700; color: var(--color-seafoam-700); margin-left: 4px;">0.000 GEN</span>
+        </button>
+        <button class="btn-primary-navy btn-sm" id="btnOpenRegisterModalNav">+ Register Agent</button>
+        
+        <!-- Mobile Drawer Toggle -->
+        <button class="mobile-menu-btn" id="btnMobileNavToggle" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="5" x2="17" y2="5"/>
+            <line x1="3" y1="10" x2="17" y2="10"/>
+            <line x1="3" y1="15" x2="17" y2="15"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-Out Navigation Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="drawer-header">
+      <div class="brand-group">
+        <div class="brand-glyph">G</div>
+        <div class="brand-name">GauntletAI</div>
+      </div>
+      <button class="drawer-close-btn" id="btnCloseMobileDrawer" aria-label="Close menu">✕</button>
+    </div>
+    <div class="drawer-menu">
+      <button type="button" class="drawer-nav-item active" data-view="overview">Overview & Mechanism</button>
+      <button type="button" class="drawer-nav-item" data-view="arena">Adversarial Arena</button>
+      <button type="button" class="drawer-nav-item" data-view="registry">Agent Directory</button>
+      <button type="button" class="drawer-nav-item" data-view="developers">Developer Integration</button>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn-wallet-connect" style="width: 100%; justify-content: center; margin-bottom: 8px;" id="btnMobileConnectWallet">
+        <span class="wallet-dot" id="mobileWalletDot"></span>
+        <span id="mobileWalletText">Connect Wallet</span>
+      </button>
+      <button class="btn-primary-navy" style="width: 100%; justify-content: center;" id="btnOpenRegisterModalMobile">+ Register Agent</button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       VIEW 1: OVERVIEW & MECHANISM
+       ======================================================================== -->
+  <div class="view-panel active" id="view-overview">
+    
+    <!-- 1. HERO SECTION (Column Split Layout) -->
+    <section class="hero-section" id="overview">
+      <div class="container hero-grid">
+        
+        <!-- Left Column: Editorial Proposition & Actions -->
+        <div class="hero-content">
+          <div class="category-tag">
+            <div class="category-tag-dot"></div>
+            <span>GenLayer Builders Protocol</span>
+          </div>
+
+          <h1 class="hero-heading">
+            The adversarial security layer for autonomous AI agents
+          </h1>
+
+          <p class="hero-subhead">
+            GauntletAI subjects on-chain agents to multi-validator red-teaming directly on GenLayer StudioNet. Issue verifiable, slashable alignment licenses before agents touch treasury liquidity.
+          </p>
+
+          <div class="hero-actions">
+            <button type="button" class="btn-primary-navy" data-switch-view="arena">
+              <span>Launch Adversarial Arena</span>
+              <span>&rarr;</span>
+            </button>
+            <button type="button" class="btn-secondary-outline" data-switch-view="registry">
+              <span>View Agent Registry</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Column Floating Transaction Widget Card -->
+        <div class="hero-widget-card">
+          <div class="widget-header">
+            <div class="widget-title">
+              <span style="color: var(--color-seafoam-700);">●</span> On-Chain Alignment License
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--color-steel);" id="heroTxHash">Awaiting Live Verification</span>
+          </div>
+
+          <div class="widget-meta-row">
+            <div>
+              <div class="widget-score-big" id="heroScoreDisplay">-- BPS</div>
+              <div class="widget-score-label" id="heroScoreLabel">Awaiting First On-Chain Benchmark</div>
+            </div>
+            <div class="widget-license-badge" id="heroLicenseBadge">
+              <span id="heroLicenseIcon">●</span> <span id="heroLicenseText">No Active License</span>
+            </div>
+          </div>
+
+          <div class="widget-agent-info">
+            <div class="widget-info-row">
+              <span class="widget-info-label">Target Agent:</span>
+              <strong style="color: var(--color-indigo-navy);" id="heroTargetAgent">None Selected</strong>
+            </div>
+            <div class="widget-info-row">
+              <span class="widget-info-label">Staked Bond:</span>
+              <span style="font-family: var(--font-mono); font-weight: 600;" id="heroStakedBond">0.000 GEN</span>
+            </div>
+            <div class="widget-info-row">
+              <span class="widget-info-label">Validator Quorum:</span>
+              <span style="color: var(--color-seafoam-700); font-weight: 600;" id="heroQuorumStatus">Quorum Active (3 Nodes)</span>
+            </div>
+            <div class="widget-info-row">
+              <span class="widget-info-label">Contract Address:</span>
+              <span style="font-family: var(--font-mono); font-size: 11px;">0x89F87F715A5edD6b34d6D29C8c9669fd8F7A344b</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. STATS ROW (Column 4-Column Trust Metrics) -->
+    <section class="stats-section">
+      <div class="container stats-grid">
+        <div class="stat-item">
+          <div class="stat-number stat-neutral" id="statMonitoredAgents">0</div>
+          <div class="stat-label">Monitored Autonomous Agents</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number stat-verified" id="statActiveLicenses">0</div>
+          <div class="stat-label">Active Alignment Licenses</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number stat-neutral" id="statLockedCollateral">0.000 GEN</div>
+          <div class="stat-label">Locked Collateral Security Bonds</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number stat-verified" id="statConsensusHealth">100.0%</div>
+          <div class="stat-label">Multi-Validator BFT Agreement</div>
+        </div>
+      </div>
+    </section>
+
+  <!-- 3. PROTOCOL MECHANISM (3 Bordered Content Cards) -->
+  <section class="section" id="architecture">
+    <div class="container">
+      <div class="section-head">
+        <div class="category-tag">
+          <div class="category-tag-dot"></div>
+          <span>Architecture & Consensus</span>
+        </div>
+        <h2 class="section-title">How GauntletAI Works Under the Hood</h2>
+        <p class="section-lead">
+          Combining GenLayer's non-deterministic web dispatch and multi-validator LLM consensus to run objective adversarial security benchmarks on-chain.
+        </p>
+      </div>
+
+      <div class="cards-grid-3">
+        <div class="bordered-content-card">
+          <div class="card-step-num">STEP 01</div>
+          <h3 class="card-title">Direct Infiltration Probes</h3>
+          <p class="card-body">
+            Validators execute <code>gl.nondet.web.post()</code> to transmit calibrated adversarial payloads directly to the agent's public inference endpoint across multiple independent network routes.
+          </p>
+          <div class="card-method-pill">gl.nondet.web.post()</div>
+        </div>
+
+        <div class="bordered-content-card">
+          <div class="card-step-num">STEP 02</div>
+          <h3 class="card-title">Sandboxed LLM Grading</h3>
+          <p class="card-body">
+            Captured agent responses are evaluated by each validator's local GenVM LLM. Graded across calibrated 1,000 BPS tiers to ensure deterministic Equivalence Principle agreement.
+          </p>
+          <div class="card-method-pill">gl.nondet.exec_prompt()</div>
+        </div>
+
+        <div class="bordered-content-card">
+          <div class="card-step-num">STEP 03</div>
+          <h3 class="card-title">Slashable On-Chain Licenses</h3>
+          <p class="card-body">
+            Passing agents receive a 30-day <code>AgentLicense</code> queryable via <code>is_certified()</code>. If an agent violates safety in production, any admin or DAO can trigger <code>slash_agent()</code> to burn collateral.
+          </p>
+          <div class="card-method-pill">gauntlet.is_certified()</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </div> <!-- END VIEW 1: OVERVIEW -->
+
+  <!-- ========================================================================
+       VIEW 2: ADVERSARIAL ARENA WORKSTATION
+       ======================================================================== -->
+  <div class="view-panel" id="view-arena">
+    <section class="section" id="arena" style="background: var(--color-pure-white); border-bottom: 1px solid var(--color-silver-lining);">
+      <div class="container">
+        <div class="section-head">
+          <div class="category-tag">
+            <div class="category-tag-dot"></div>
+            <span>Interactive Testing Workstation</span>
+          </div>
+          <h2 class="section-title">The Adversarial Arena</h2>
+          <p class="section-lead">
+            Select an agent and capability track to launch a live adversarial verification challenge through GenLayer StudioNet validators.
+          </p>
+        </div>
+
+        <div class="arena-card">
+          
+          <!-- On-Chain Live Transaction Banner -->
+          <div class="onchain-tx-banner" id="arenaTxBanner" style="display: none;">
+            <div class="tx-banner-left">
+              <div class="tx-spinner" id="arenaTxSpinner"></div>
+              <div class="tx-info">
+                <div class="tx-status-label" id="arenaTxTitle">Broadcasting to StudioNet...</div>
+                <div class="tx-hash-display" id="arenaTxDetails">Awaiting signature in wallet...</div>
+              </div>
+            </div>
+            <div class="tx-banner-right">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-explorer-link" id="arenaTxExplorerLink" style="display: none;">
+                <span>View on Explorer</span>
+                <span class="tx-ext-icon">↗</span>
+              </a>
+              <button type="button" class="btn-banner-close" id="btnCloseArenaTxBanner" aria-label="Close transaction notification">✕</button>
+            </div>
+          </div>
+
+          <!-- Controls Bar -->
+          <div class="arena-controls-bar">
+            <div class="form-group">
+              <label class="form-label" for="arenaTargetSelect">Target Autonomous Agent</label>
+              <select class="form-select" id="arenaTargetSelect"></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Active Verification Track</label>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span id="activeTrackBadge" style="font-size: 11px; font-weight: 600; padding: 4px 10px; background: rgba(17, 26, 74, 0.06); border-radius: var(--radius-tags); color: var(--color-indigo-navy); border: 1px solid var(--color-silver-lining);">
+                  INJECTION DEFENSE
+                </span>
+                <span style="font-size: 13px; color: var(--color-steel);" id="activeTrackDescription">
+                  Evaluates jailbreak overrides & prompt leakage
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Track Tabs with Monochromatic SVG Icons -->
+          <div class="track-tabs-bar" role="tablist">
+            <button class="track-tab-btn active" data-track="INJECTION_DEFENSE" role="tab" aria-selected="true">
+              <svg class="tab-svg-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Prompt Injection Defense</span>
+            </button>
+            <button class="track-tab-btn" data-track="TREASURY_SAFETY" role="tab" aria-selected="false">
+              <svg class="tab-svg-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="2" y1="12" x2="4" y2="12"/></svg>
+              <span>Treasury & Liquidity Safety</span>
+            </button>
+            <button class="track-tab-btn" data-track="DATA_INTEGRITY" role="tab" aria-selected="false">
+              <svg class="tab-svg-icon" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="9" y="14" width="6" height="6" rx="1"/><path d="M7 10v2a2 2 0 0 0 2 2h3m5-4v2a2 2 0 0 1-2 2h-3"/></svg>
+              <span>Schema & Data Integrity</span>
+            </button>
+          </div>
+
+          <!-- Arena Body Split -->
+          <div class="arena-body-split">
+            
+            <!-- Left Column: Attack Vector Payload -->
+            <div class="arena-col-left">
+              <div class="box-header-title">
+                <span>Adversarial Probe Payload</span>
+                <span style="color: var(--color-indigo-navy); font-weight: 600;" id="attackSeverityTag">SEV-1 CRITICAL</span>
+              </div>
+
+              <div class="code-container-column" id="attackVectorDisplay"></div>
+
+              <div class="payload-notice-box">
+                <span class="payload-notice-dot">●</span>
+                <span><strong>Multi-Validator Consensus:</strong> Probes are transmitted to the target agent's live endpoint. GenVM validator nodes evaluate responses in parallel against the active heuristic.</span>
+              </div>
+            </div>
+
+            <!-- Right Column: Stepper & Console Telemetry -->
+            <div class="arena-col-right">
+              <div class="box-header-title">
+                <span>Execution Stepper</span>
+                <span style="color: var(--color-seafoam-700); font-weight: 600;" id="consensusStatusTag">● Quorum Ready</span>
+              </div>
+
+              <div class="stepper-container">
+                <div class="stepper-row" id="stepDispatch">
+                  <div class="stepper-circle">1</div>
+                  <div style="flex: 1;"><strong>Validator Dispatch:</strong> Transmit probe via <code>gl.nondet.web.post</code></div>
+                  <span id="stepDispatchStatus">Idle</span>
+                </div>
+                <div class="stepper-row" id="stepCapture">
+                  <div class="stepper-circle">2</div>
+                  <div style="flex: 1;"><strong>Inference Capture:</strong> Capture agent HTTP response payload & latency</div>
+                  <span id="stepCaptureStatus">Idle</span>
+                </div>
+                <div class="stepper-row" id="stepEvaluate">
+                  <div class="stepper-circle">3</div>
+                  <div style="flex: 1;"><strong>GenVM Sandboxed Evaluation:</strong> LLM grades response against invariant</div>
+                  <span id="stepEvaluateStatus">Idle</span>
+                </div>
+                <div class="stepper-row" id="stepConsensus">
+                  <div class="stepper-circle">4</div>
+                  <div style="flex: 1;"><strong>Equivalence Finality:</strong> Reconcile votes across 3 validator nodes</div>
+                  <span id="stepConsensusStatus">Idle</span>
+                </div>
+              </div>
+
+              <div class="box-header-title" style="margin-top: 6px;">
+                <span>Consensus Stream Telemetry</span>
+                <button type="button" class="btn-ghost-sm" id="btnClearLogs">Clear</button>
+              </div>
+              <div class="arena-console-stream" id="arenaLogsBox"></div>
+
+            </div>
+
+          </div>
+
+          <!-- Arena Footer Action Strip -->
+          <div class="arena-footer-strip">
+            <div style="display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--color-steel);">
+              <span>Passing Threshold: <strong style="color: var(--color-indigo-navy);">7,500 BPS (75%)</strong></span>
+              <span style="color: var(--color-silver-lining);">|</span>
+              <span>Network Fee: <strong style="color: var(--color-seafoam-700);">0.00 GEN (Gasless StudioNet)</strong></span>
+            </div>
+
+            <button class="btn-primary-navy" id="btnLaunchGauntlet">
+              <span id="btnLaunchIcon">⚡</span>
+              <span id="btnLaunchText">Run Adversarial Challenge</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div> <!-- END VIEW 2: ARENA -->
+
+  <!-- ========================================================================
+       VIEW 3: VERIFIED AGENT DIRECTORY
+       ======================================================================== -->
+  <div class="view-panel" id="view-registry">
+    <section class="section" id="registry">
+      <div class="container">
+        <div class="section-head">
+          <div class="category-tag">
+            <div class="category-tag-dot"></div>
+            <span>On-Chain Registry</span>
+          </div>
+          <h2 class="section-title">Verified Agent Directory</h2>
+          <p class="section-lead">
+            All autonomous agents registered in the GauntletAI protocol on StudioNet, complete with staked security bonds, verified capability licenses, and historical performance scores.
+          </p>
+        </div>
+
+        <div class="table-card-surface">
+          
+          <!-- On-Chain Live Transaction Banner -->
+          <div class="onchain-tx-banner" id="registryTxBanner" style="display: none; margin: 16px 16px 0 16px;">
+            <div class="tx-banner-left">
+              <div class="tx-spinner" id="registryTxSpinner"></div>
+              <div class="tx-info">
+                <div class="tx-status-label" id="registryTxTitle">Broadcasting to StudioNet...</div>
+                <div class="tx-hash-display" id="registryTxDetails">Awaiting signature in wallet...</div>
+              </div>
+            </div>
+            <div class="tx-banner-right">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-explorer-link" id="registryTxExplorerLink" style="display: none;">
+                <span>View on Explorer</span>
+                <span class="tx-ext-icon">↗</span>
+              </a>
+              <button type="button" class="btn-banner-close" id="btnCloseRegistryTxBanner" aria-label="Close transaction notification">✕</button>
+            </div>
+          </div>
+
+          <!-- Table Toolbar -->
+          <div class="table-toolbar-strip">
+            <div style="display: flex; align-items: center; gap: 12px; flex: 1; max-width: 320px;">
+              <label for="registrySearchInput" class="sr-only">Search agent name or ID</label>
+              <input type="text" class="search-input-pill" id="registrySearchInput" placeholder="Search agent name or ID..." style="width: 100%;">
+            </div>
+
+            <div class="pill-filter-group">
+              <button class="pill-filter-btn active" data-filter="ALL">All Agents</button>
+              <button class="pill-filter-btn" data-filter="CERTIFIED">Certified</button>
+              <button class="pill-filter-btn" data-filter="FROZEN">Frozen (Disputed)</button>
+              <button class="pill-filter-btn" data-filter="SLASHED">Slashed</button>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <!-- RPC Status Badge -->
+              <div class="rpc-status-badge" id="registryRpcBadge" title="Live connection to GenLayer StudioNet RPC">
+                <span class="rpc-status-dot online" id="registryRpcDot"></span>
+                <span id="registryRpcText">StudioNet 61999</span>
+              </div>
+
+              <!-- Model C Decentralized Protocol Badge -->
+              <div class="rpc-status-badge" style="background: rgba(17, 26, 74, 0.04); border-color: var(--color-silver-lining); gap: 6px;" title="Model C Decentralized Slashing & Native Appeals Active">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-indigo-navy);"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 600; color: var(--color-indigo-navy);">Model C Disputes</span>
+              </div>
+
+              <button class="btn-secondary-outline btn-sm" id="btnOpenRegisterModalTable">+ Register New Agent</button>
+            </div>
+          </div>
+
+          <!-- Column Data Table (Scrollable Container) -->
+          <div class="table-responsive-scroll">
+            <table class="column-table">
+              <thead>
+                <tr>
+                  <th>Agent Specification</th>
+                  <th>Endpoint URL</th>
+                  <th class="col-numeric">Collateral Bond</th>
+                  <th>Status</th>
+                  <th class="col-numeric">Defense Score</th>
+                  <th style="text-align: right;">Protocol Actions</th>
+                </tr>
+              </thead>
+              <tbody id="agentTableBody"></tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div> <!-- END VIEW 3: REGISTRY -->
+
+  <!-- ========================================================================
+       VIEW 4: DEVELOPER INTEGRATION
+       ======================================================================== -->
+  <div class="view-panel" id="view-developers">
+    <section class="section" id="developers" style="background: var(--color-pure-white); border-top: 1px solid var(--color-silver-lining);">
+      <div class="container">
+        <div class="section-head">
+          <div class="category-tag">
+            <div class="category-tag-dot"></div>
+            <span>Developer Integration</span>
+          </div>
+          <h2 class="section-title">Integrate GauntletAI in 3 Lines</h2>
+          <p class="section-lead">
+            Protect DAO treasuries, trading vaults, and execution routers by verifying whether an autonomous agent holds an unrevoked GauntletAI license before executing privileged calls.
+          </p>
+        </div>
+
+        <!-- Live RPC Connection Strip -->
+        <div style="margin-bottom: 24px; padding: 14px 20px; background: var(--color-cloud-canvas); border: 1px solid var(--color-silver-lining); border-radius: var(--radius-cards); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <div class="rpc-status-badge" id="devRpcBadge">
+              <span class="rpc-status-dot online" id="devRpcDot"></span>
+              <strong style="color: var(--color-indigo-navy);" id="devRpcStatus">StudioNet Connected</strong>
+            </div>
+            <span class="rpc-meta-mono" id="devRpcEndpoint">RPC: https://studio.genlayer.com/api</span>
+            <span class="rpc-meta-mono" id="devRpcLatency">Ping: ~84ms</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 12px; color: var(--color-steel);">Target:</span>
+            <code style="font-family: var(--font-mono); font-size: 11px; background: var(--color-pure-white); border: 1px solid var(--color-silver-lining); padding: 3px 8px; border-radius: 4px; color: var(--color-indigo-navy);">0x89F8...344b</code>
+            <button type="button" class="btn-connect-wallet" id="btnConnectWallet">
+              <span id="walletConnectIcon">⚡</span>
+              <span id="walletConnectText">Connect Wallet</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="dev-grid-split">
+          
+          <!-- Left: Interactive Gate Simulator -->
+          <div class="dev-card-surface">
+            <div class="box-header-title">
+              <span>Cross-Contract Gate Test Bench</span>
+              <span style="color: var(--color-seafoam-700); font-family: var(--font-mono);">is_certified()</span>
+            </div>
+
+            <p style="font-size: 13px; color: var(--color-steel);">
+              Simulate a real-time cross-contract call from your smart contract to check if a specific agent passes GauntletAI alignment standards.
+            </p>
+
+            <div class="form-group">
+              <label class="form-label" for="gateSimAgentId">Agent Identifier</label>
+              <input type="text" class="form-input" id="gateSimAgentId" value="sentinel-prime">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="gateSimTrack">Required Capability Track</label>
+              <select class="form-select" id="gateSimTrack">
+                <option value="INJECTION_DEFENSE">INJECTION_DEFENSE</option>
+                <option value="TREASURY_SAFETY">TREASURY_SAFETY</option>
+                <option value="DATA_INTEGRITY">DATA_INTEGRITY</option>
+              </select>
+            </div>
+
+            <button class="btn-secondary-outline" id="btnRunGateSim">Evaluate On-Chain Gate</button>
+
+            <!-- Gate Result Display -->
+            <div id="gateResultDisplay" class="gate-result-box status-certified">
+              <div>
+                <strong>ACCESS_GRANTED</strong>
+                <div style="font-size: 11px; opacity: 0.85; margin-top: 2px;">Active license valid on StudioNet. Execution authorized.</div>
+              </div>
+              <span style="font-family: var(--font-mono); font-weight: 700;">100.0%</span>
+            </div>
+          </div>
+
+          <!-- Right: Copyable Intelligent Contract Code Block -->
+          <div class="dev-card-surface">
+            <div class="box-header-title">
+              <span>GenLayer Intelligent Contract Snippet</span>
+              <button class="copy-snippet-btn" id="btnCopyCodeSnippet">Copy Snippet</button>
+            </div>
+
+            <p style="font-size: 13px; color: var(--color-steel);">
+              Drop this verification guard directly into your Python Intelligent Contract:
+            </p>
+
+            <div class="code-block-wrapper">
+  <pre id="codeSnippetText"><span class="kw">import</span> genlayer.gl <span class="kw">as</span> gl
+
+  <span class="kw">def</span> <span class="fn">execute_agent_withdrawal</span>(agent_id: str, amount: u256):
+      <span class="comment"># 1. Connect to deployed GauntletAI contract</span>
+      gauntlet = gl.<span class="fn">get_contract</span>(<span class="str">"0x89F87F715A5edD6b34d6D29C8c9669fd8F7A344b"</span>)
+      
+      <span class="comment"># 2. Gate execution on active alignment license</span>
+      <span class="kw">if not</span> gauntlet.<span class="fn">is_certified</span>(agent_id, <span class="str">"TREASURY_SAFETY"</span>):
+          <span class="kw">raise</span> <span class="fn">Exception</span>(<span class="str">"GATE_LOCKED: Agent lacks verified GauntletAI alignment license"</span>)
+          
+      <span class="comment"># 3. Safe liquidity transfer proceeds</span>
+      gl.<span class="fn">transfer</span>(agent_id, amount)</pre>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div> <!-- END VIEW 4: DEVELOPERS -->
+
+  <!-- 7. INSTITUTIONAL FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <div class="footer-brand-col">
+          <div class="brand-group" style="margin-bottom: 12px;">
+            <div class="brand-glyph">G</div>
+            <div class="brand-name">GauntletAI</div>
+          </div>
+          <p style="color: var(--color-steel); font-size: 13px; line-height: 1.6;">
+            The decentralized adversarial certification and alignment verification protocol for autonomous AI agents on GenLayer.
+          </p>
+        </div>
+
+        <div class="footer-columns">
+          <div class="footer-col-nav">
+            <div class="footer-col-title">Protocol</div>
+            <a href="#" class="footer-link" data-switch-view="overview">Overview & Mechanism</a>
+            <a href="#" class="footer-link" data-switch-view="arena">Adversarial Arena</a>
+            <a href="#" class="footer-link" data-switch-view="registry">Verified Registry</a>
+            <a href="#" class="footer-link" data-switch-view="developers">Developer Integration</a>
+          </div>
+
+          <div class="footer-col-nav">
+            <div class="footer-col-title">GenLayer</div>
+            <a href="https://docs.genlayer.com" target="_blank" rel="noreferrer" class="footer-link">GenLayer Docs ↗</a>
+            <a href="https://studio.genlayer.com" target="_blank" rel="noreferrer" class="footer-link">StudioNet Explorer ↗</a>
+            <a href="https://github.com/genlayer" target="_blank" rel="noreferrer" class="footer-link">GitHub ↗</a>
+          </div>
+
+          <div class="footer-col-nav">
+            <div class="footer-col-title">Contract Details</div>
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--color-indigo-navy); word-break: break-all;">
+              0x4b0baA8704BC7613805405AEdACA70ea74b54bD0
+            </div>
+            <div style="margin-top: 6px; font-size: 11px; color: var(--color-seafoam-700);">
+              Chain ID 61999 (StudioNet)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <div>© 2026 GauntletAI Protocol. Built for the GenLayer Builders Contribution Program.</div>
+        <div style="display: flex; gap: 16px;">
+          <span>Network: <strong style="color: var(--color-indigo-navy);">StudioNet Live</strong></span>
+          <span>Consensus: <strong style="color: var(--color-indigo-navy);">BFT-LLM Equivalence</strong></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
+
+  <!-- 1. Register Agent Modal -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title">Register Autonomous Agent</div>
+        <button class="modal-close-btn" id="btnCloseRegisterModal">✕</button>
+      </div>
+
+      <p style="font-size: 13px; color: var(--color-steel); margin-top: -8px;">
+        Register an agent's public inference endpoint into GauntletAI and deposit initial collateral to unlock on-chain adversarial challenges.
+      </p>
+
+      <form id="registerAgentForm" style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="form-group">
+          <label class="form-label" for="newAgentSlug">Unique Slug / ID</label>
+          <input type="text" class="form-input" id="newAgentSlug" placeholder="e.g. nexus-oracle-v2" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="newAgentTitle">Display Name</label>
+          <input type="text" class="form-input" id="newAgentTitle" placeholder="e.g. Nexus Liquidity Oracle" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="newAgentUrl">Public Inference Endpoint URL</label>
+          <input type="url" class="form-input" id="newAgentUrl" placeholder="https://api.myagent.io/v1/inference" required>
+          <span style="font-size: 11px; color: var(--color-steel);">Validators will query this endpoint directly during challenges.</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="newAgentCollateral">Initial Stake Collateral (GEN)</label>
+          <input type="number" step="0.01" min="0.01" class="form-input" id="newAgentCollateral" value="0.05" required>
+          <span style="font-size: 11px; color: var(--color-steel);">Minimum collateral is 0.01 GEN. Slashable upon safety breaches.</span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary-outline btn-sm" id="btnCancelRegister">Cancel</button>
+          <button type="submit" class="btn-primary-navy btn-sm">Confirm Registration</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Submit Dispute Modal (Model C) -->
+  <div class="modal-overlay" id="disputeModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title" style="color: #c0263f;">Submit On-Chain Dispute</div>
+        <button class="modal-close-btn" id="btnCloseDisputeModal">✕</button>
+      </div>
+
+      <p style="font-size: 13px; color: var(--color-steel); line-height: 1.5; margin-bottom: 16px;">
+        Initiate an adversarial dispute against target agent:
+        <strong id="disputeAgentTargetDisplay" style="color: var(--color-indigo-navy);">sentinel-prime</strong>.
+        Validators will re-evaluate the agent against the selected invariant track.
+      </p>
+
+      <div class="form-group">
+        <label class="form-label" for="disputeTrackSelect">Target Invariant Track</label>
+        <select class="form-input" id="disputeTrackSelect">
+          <option value="INJECTION_DEFENSE">Prompt Injection Defense (SEV-1)</option>
+          <option value="TREASURY_SAFETY">Treasury & Liquidity Safety (SEV-1)</option>
+          <option value="DATA_INTEGRITY">Schema & Data Integrity (SEV-2)</option>
+        </select>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid var(--color-dawn-300); border-radius: 6px; padding: 12px; margin-bottom: 16px; font-size: 12px; line-height: 1.6;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+          <span style="color: var(--color-steel);">Required Challenger Bond:</span>
+          <strong style="font-family: var(--font-mono); color: var(--color-indigo-navy);">0.005 GEN</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+          <span style="color: var(--color-steel);">Potential Slashing Bounty (30%):</span>
+          <strong style="font-family: var(--font-mono); color: var(--color-seafoam-700);" id="disputeBountyEstimate">0.003+ GEN</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span style="color: var(--color-steel);">Protocol Burn (70%):</span>
+          <span style="font-family: var(--font-mono); color: var(--color-steel);" id="disputeBurnEstimate">0.007+ GEN</span>
+        </div>
+        <hr style="border: none; border-top: 1px solid var(--color-dawn-300); margin: 8px 0;">
+        <div style="font-size: 11px; color: var(--color-steel);">
+          <strong style="color: #c0263f;">Notice:</strong> If the breach is confirmed, the agent is immediately <strong>FROZEN</strong> (licenses suspended). If the agent successfully defends the invariant, your 0.005 GEN bond is forfeited to the agent owner.
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary-outline btn-sm" id="btnCancelDispute">Cancel</button>
+        <button type="button" class="btn-danger-outline btn-sm" id="btnConfirmDisputeAction">Submit Dispute (0.005 GEN)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Appeal Dispute Modal (Model C) -->
+  <div class="modal-overlay" id="appealModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title" style="color: var(--color-indigo-navy);">Appeal Provisional Freeze</div>
+        <button class="modal-close-btn" id="btnCloseAppealModal">✕</button>
+      </div>
+
+      <p style="font-size: 13px; color: var(--color-steel); line-height: 1.5; margin-bottom: 16px;">
+        File an owner appeal for agent:
+        <strong id="appealAgentTargetDisplay" style="color: var(--color-indigo-navy);">agent-id</strong>.
+        Dispute ID: <span id="appealDisputeIdDisplay" style="font-family: var(--font-mono); font-weight: 600; color: var(--color-indigo-navy);">disp-1</span>
+      </p>
+
+      <div style="background: #f8fafc; border: 1px solid var(--color-dawn-300); border-radius: 6px; padding: 12px; margin-bottom: 16px; font-size: 12px; line-height: 1.6;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+          <span style="color: var(--color-steel);">Required Appeal Bond:</span>
+          <strong style="font-family: var(--font-mono); color: var(--color-indigo-navy);">0.010 GEN</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+          <span style="color: var(--color-steel);">Appeal Window:</span>
+          <strong style="font-family: var(--font-mono); color: var(--color-indigo-navy);">24 Hours</strong>
+        </div>
+        <hr style="border: none; border-top: 1px solid var(--color-dawn-300); margin: 8px 0;">
+        <div style="font-size: 11px; color: var(--color-steel);">
+          <strong style="color: var(--color-indigo-navy);">Notice:</strong> Only the agent owner can file an appeal. GenLayer validators will execute a fresh consensus re-evaluation. If passed, the active license is restored and both the appeal bond and challenger bond are refunded to you. If failed, the agent collateral is permanently slashed.
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary-outline btn-sm" id="btnCancelAppeal">Cancel</button>
+        <button type="button" class="btn-primary-navy btn-sm" id="btnConfirmAppealAction">Submit Appeal (0.010 GEN)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
