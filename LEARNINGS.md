@@ -58,3 +58,13 @@ Continuous documentation of non-obvious issues, bugs, and design patterns discov
   3. Enforce an inspection gate (`git ls-files`) prior to any public release or push to ensure only production-grade code, tests, and public documentation are committed.
 - **Key Takeaway/Prevention**: Never run indiscriminate `git add .` on a repository root without verifying that internal chat/planning artifacts are quarantined in a gitignored `.internal/` folder.
 
+---
+
+### 2026-09-21: High-DPI PNG Asset Generation via Chrome DevTools MCP
+- **Context/Problem**: Hackathon portals and social platforms require rasterized PNG assets (square avatar/logo and landscape lockup). The local Python environment lacked image processing libraries (`Pillow`, `cairosvg`, `reportlab`), preventing direct programmatic SVG-to-PNG conversion scripts from executing.
+- **Root Cause**: Minimal Python environment without native image rasterization dependencies installed.
+- **Solution/Better Way**:
+  1. Created standalone HTML wrappers (`export-logo.html` and `export-lockup.html`) with exact pixel viewport dimensions, zero margins, flex-centering, and CSS font rendering for vector SVGs.
+  2. Used the Chrome DevTools MCP (`navigate_page` to `file:///...` -> `take_screenshot`) to capture perfect, pixel-crisp, subpixel-antialiased 512x512 and 800x400 PNGs directly from the browser's Blink rendering engine.
+- **Key Takeaway/Prevention**: When image processing libraries are absent in the runtime environment, leverage headless browser / DevTools MCP capabilities to render HTML/SVG templates into production-quality raster assets.
+
