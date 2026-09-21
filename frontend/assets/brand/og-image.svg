@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" fill="none">
+  <defs>
+    <!-- Grid Pattern -->
+    <pattern id="ogGrid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#cbd2e1" opacity="0.45"/>
+    </pattern>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f8f9fc"/>
+      <stop offset="100%" stop-color="#edf1f8"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fbfcfd"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#ogGrid)"/>
+
+  <!-- Top Accent Bar -->
+  <rect x="0" y="0" width="1200" height="6" fill="#111a4a"/>
+
+  <!-- Content Container Card -->
+  <g transform="translate(80, 70)">
+    <!-- Header: Logo & Badges -->
+    <g transform="translate(0, 0)">
+      <!-- Aperture Mark -->
+      <g transform="scale(0.65)">
+        <path d="M 64 12 L 108 34 L 108 60 L 86 60 L 86 46 L 64 35 L 38 48 L 38 80 L 64 93 L 90 80 L 90 70 L 64 70 L 64 54 L 108 54 L 108 94 L 64 116 L 18 93 L 18 35 Z" fill="#111a4a" fill-rule="evenodd"/>
+        <rect x="58" y="58" width="12" height="12" rx="2" fill="#0e8a72"/>
+      </g>
+      <text x="90" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="36" font-weight="800" letter-spacing="-0.03em" fill="#111a4a">Gauntlet<tspan fill="#0e8a72">AI</tspan></text>
+      
+      <!-- Network Tag -->
+      <rect x="330" y="24" width="200" height="34" rx="6" fill="#e8edf5" stroke="#cbd2e1" stroke-width="1"/>
+      <circle cx="348" cy="41" r="5" fill="#0e8a72"/>
+      <text x="364" y="46" font-family="'JetBrains Mono', monospace" font-size="13" font-weight="600" fill="#111a4a">GENLAYER STUDIONET</text>
+    </g>
+
+    <!-- Main Headline -->
+    <text x="0" y="170" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="52" font-weight="800" letter-spacing="-0.04em" fill="#111a4a" line-height="1.15">
+      On-Chain Adversarial Red-Teaming
+    </text>
+    <text x="0" y="232" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="52" font-weight="800" letter-spacing="-0.04em" fill="#0e8a72">
+      &amp; Alignment Licensing for AI Agents
+    </text>
+
+    <!-- Subtitle / Positioning -->
+    <text x="0" y="285" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="21" font-weight="400" fill="#4a5568">
+      Multi-validator BFT equivalence consensus · Model C decentralized disputes · 30-day verifiable licenses
+    </text>
+
+    <!-- Bottom Metrics Strip -->
+    <g transform="translate(0, 340)">
+      <!-- Metric 1: Consensus Engine -->
+      <g transform="translate(0, 0)">
+        <rect width="240" height="96" rx="8" fill="#ffffff" stroke="#e3e4e8" stroke-width="1"/>
+        <text x="20" y="34" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" fill="#6b7280">CONSENSUS</text>
+        <text x="20" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="22" font-weight="700" fill="#111a4a">GenVM LLM</text>
+        <text x="20" y="84" font-family="'JetBrains Mono', monospace" font-size="11" fill="#0e8a72">3-Node BFT Quorum</text>
+      </g>
+
+      <!-- Metric 2: Economic Model -->
+      <g transform="translate(260, 0)">
+        <rect width="240" height="96" rx="8" fill="#ffffff" stroke="#e3e4e8" stroke-width="1"/>
+        <text x="20" y="34" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" fill="#6b7280">DISPUTE MODEL</text>
+        <text x="20" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="22" font-weight="700" fill="#111a4a">Model C Slashing</text>
+        <text x="20" y="84" font-family="'JetBrains Mono', monospace" font-size="11" fill="#0e8a72">30% Bounty / 70% Burn</text>
+      </g>
+
+      <!-- Metric 3: Staking Bounds -->
+      <g transform="translate(520, 0)">
+        <rect width="240" height="96" rx="8" fill="#ffffff" stroke="#e3e4e8" stroke-width="1"/>
+        <text x="20" y="34" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" fill="#6b7280">MINIMUM STAKE</text>
+        <text x="20" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="22" font-weight="700" fill="#111a4a">0.010 GEN</text>
+        <text x="20" y="84" font-family="'JetBrains Mono', monospace" font-size="11" fill="#6b7280">24h Appeal Window</text>
+      </g>
+
+      <!-- Metric 4: Certified Defense Score -->
+      <g transform="translate(780, 0)">
+        <rect width="260" height="96" rx="8" fill="#ffffff" stroke="#e3e4e8" stroke-width="1"/>
+        <text x="20" y="34" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" fill="#6b7280">LIVE BENCHMARK</text>
+        <text x="20" y="66" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="22" font-weight="700" fill="#0e8a72">10,000 BPS</text>
+        <text x="20" y="84" font-family="'JetBrains Mono', monospace" font-size="11" fill="#0e8a72">100.0% Defense Passed</text>
+      </g>
+    </g>
+
+    <!-- Footer Contract Hash -->
+    <g transform="translate(0, 465)">
+      <text x="0" y="16" font-family="'JetBrains Mono', monospace" font-size="13" fill="#6b7280">
+        CONTRACT: <tspan fill="#111a4a" font-weight="600">0x4b0baA8704BC7613805405AEdACA70ea74b54bD0</tspan> · BUILDERS CONTRIBUTION PROGRAM
+      </text>
+    </g>
+  </g>
+</svg>

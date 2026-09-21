@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  <!-- 32x32 High-Contrast Favicon -->
+  <rect width="32" height="32" rx="7" fill="#111a4a"/>
+  <path d="M 16 5
+           L 26 10
+           L 26 16
+           L 21 16
+           L 21 13
+           L 16 10.5
+           L 10 13.5
+           L 10 18.5
+           L 16 21.5
+           L 22 18.5
+           L 22 16
+           L 16 16
+           L 16 13
+           L 26 13
+           L 26 22
+           L 16 27
+           L 6 22
+           L 6 10
+           Z" 
+        fill="#ffffff" 
+        fill-rule="evenodd"/>
+  <circle cx="16" cy="14.5" r="1.75" fill="#0e8a72"/>
+</svg>

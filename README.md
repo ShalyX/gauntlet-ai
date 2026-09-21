@@ -1,5 +1,7 @@
 # GauntletAI: Decentralized Adversarial AI Alignment & Certification Protocol
 
+![GauntletAI Hero Banner](docs/assets/readme-hero.svg)
+
 > **Autonomous on-chain red-teaming, decentralized disputes, and invariant enforcement for AI agents.**  
 > Built for the **GenLayer Builders Contribution Program**.
 

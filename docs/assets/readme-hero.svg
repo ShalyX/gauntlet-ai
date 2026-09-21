@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" width="1280" height="420" fill="none">
+  <defs>
+    <linearGradient id="heroBg" x1="0" y1="0" x2="1280" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0e153a"/>
+      <stop offset="60%" stop-color="#111a4a"/>
+      <stop offset="100%" stop-color="#16225e"/>
+    </linearGradient>
+    <pattern id="heroDots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#445588" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="420" fill="url(#heroBg)"/>
+  <rect width="1280" height="420" fill="url(#heroDots)"/>
+
+  <!-- Top Accent Line -->
+  <rect x="0" y="0" width="1280" height="4" fill="#0e8a72"/>
+
+  <!-- Left Content Column -->
+  <g transform="translate(80, 65)">
+    <!-- Brand Glyph Lockup -->
+    <g>
+      <!-- Inverted Aperture Mark -->
+      <g transform="scale(0.55)">
+        <path d="M 64 12 L 108 34 L 108 60 L 86 60 L 86 46 L 64 35 L 38 48 L 38 80 L 64 93 L 90 80 L 90 70 L 64 70 L 64 54 L 108 54 L 108 94 L 64 116 L 18 93 L 18 35 Z" fill="#ffffff" fill-rule="evenodd"/>
+        <rect x="58" y="58" width="12" height="12" rx="2" fill="#0e8a72"/>
+      </g>
+      <text x="80" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="32" font-weight="800" letter-spacing="-0.03em" fill="#ffffff">Gauntlet<tspan fill="#44b48b">AI</tspan></text>
+      
+      <rect x="300" y="20" width="180" height="28" rx="5" fill="#1b2559" stroke="#33427d" stroke-width="1"/>
+      <circle cx="316" cy="34" r="4" fill="#44b48b"/>
+      <text x="330" y="38" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="#cbd2e1">STUDIONET 61999</text>
+    </g>
+
+    <!-- Headline -->
+    <text x="0" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="38" font-weight="800" letter-spacing="-0.03em" fill="#ffffff" line-height="1.2">
+      Autonomous On-Chain Red-Teaming
+    </text>
+    <text x="0" y="174" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="38" font-weight="800" letter-spacing="-0.03em" fill="#44b48b">
+      &amp; Alignment Licensing for AI Agents
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="215" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="16" font-weight="400" fill="#a0aec0">
+      Multi-validator BFT consensus · Model C decentralized disputes · 30-day verified licenses
+    </text>
+
+    <!-- Quick Proof Bar -->
+    <g transform="translate(0, 248)">
+      <rect width="520" height="42" rx="6" fill="#182352" stroke="#2a3b78" stroke-width="1"/>
+      <text x="16" y="26" font-family="'JetBrains Mono', monospace" font-size="12" fill="#cbd2e1">
+        CONTRACT: <tspan fill="#44b48b" font-weight="600">0x4b0baA8704BC7613805405AEdACA70ea74b54bD0</tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- Right Architecture Stepper Graphic -->
+  <g transform="translate(730, 60)">
+    <rect width="470" height="300" rx="10" fill="#0d1435" stroke="#223068" stroke-width="1"/>
+    
+    <!-- Header of Card -->
+    <rect x="0" y="0" width="470" height="40" rx="10" fill="#131c46"/>
+    <circle cx="20" cy="20" r="4" fill="#ef4444" opacity="0.8"/>
+    <circle cx="34" cy="20" r="4" fill="#eab308" opacity="0.8"/>
+    <circle cx="48" cy="20" r="4" fill="#22c55e" opacity="0.8"/>
+    <text x="70" y="24" font-family="'JetBrains Mono', monospace" font-size="11" fill="#a0aec0">GENVM ADVERSARIAL CONSENSUS PIPELINE</text>
+
+    <!-- Step 1 -->
+    <g transform="translate(24, 60)">
+      <rect width="28" height="28" rx="6" fill="#182352" stroke="#2a3b78" stroke-width="1"/>
+      <text x="14" y="19" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#44b48b" text-anchor="middle">1</text>
+      <text x="40" y="14" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" font-weight="600" fill="#ffffff">Validator Probe Dispatch</text>
+      <text x="40" y="28" font-family="'JetBrains Mono', monospace" font-size="10" fill="#718096">gl.nondet.web.post(endpoint, payload)</text>
+    </g>
+
+    <!-- Step 2 -->
+    <g transform="translate(24, 116)">
+      <rect width="28" height="28" rx="6" fill="#182352" stroke="#2a3b78" stroke-width="1"/>
+      <text x="14" y="19" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#44b48b" text-anchor="middle">2</text>
+      <text x="40" y="14" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" font-weight="600" fill="#ffffff">Raw Inference Capture</text>
+      <text x="40" y="28" font-family="'JetBrains Mono', monospace" font-size="10" fill="#718096">Multi-node parallel HTTP probe (200 OK)</text>
+    </g>
+
+    <!-- Step 3 -->
+    <g transform="translate(24, 172)">
+      <rect width="28" height="28" rx="6" fill="#182352" stroke="#2a3b78" stroke-width="1"/>
+      <text x="14" y="19" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#44b48b" text-anchor="middle">3</text>
+      <text x="40" y="14" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" font-weight="600" fill="#ffffff">GenVM LLM Sandboxing</text>
+      <text x="40" y="28" font-family="'JetBrains Mono', monospace" font-size="10" fill="#718096">gl.nondet.exec_prompt() evaluates invariant</text>
+    </g>
+
+    <!-- Step 4 -->
+    <g transform="translate(24, 228)">
+      <rect width="28" height="28" rx="6" fill="#0e8a72" stroke="#167e6c" stroke-width="1"/>
+      <text x="14" y="19" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+      <text x="40" y="14" font-family="-apple-system, BlinkMacSystemFont, 'Inter', sans-serif" font-size="13" font-weight="600" fill="#44b48b">BFT Equivalence Finality</text>
+      <text x="40" y="28" font-family="'JetBrains Mono', monospace" font-size="10" fill="#a0aec0">Score tier consensus -> Mint 30-day license</text>
+    </g>
+  </g>
+</svg>
