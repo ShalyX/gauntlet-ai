@@ -46,3 +46,15 @@ Continuous documentation of non-obvious issues, bugs, and design patterns discov
 - **Root Cause**: The contract used a `TreeMap[str, AgentProfile]` which does not support key enumeration by default in GenVM.
 - **Solution/Better Way**: Added a `registered_agent_ids: DynArray[str]` to the contract and exposed a read method `get_all_agents() -> list[dict]`. The frontend now queries this method natively on mount.
 - **Key Takeaway/Prevention**: Decentralized registries must provide first-class native enumeration directly from on-chain storage to remain fully decentralized and trustless.
+
+---
+
+### 2026-09-21: Public Project Launch Hygiene & Segregating Internal Planning Notes
+- **Context/Problem**: Internal planning files (`GAUNTLET_AI_PLAN.md`, `HACKATHON_IDEAS.md`), exploratory prototypes (`multi_source_synthesizer.py`), and conversational walkthrough artifacts were accidentally staged with `git add .` and pushed to the public GitHub repository.
+- **Root Cause**: Storing temporary pair-programming brainstorms and alternative concepts directly in the root workspace without an isolation boundary.
+- **Solution/Better Way**:
+  1. Quarantined all internal planning notes and alternative prototypes into a `.internal/` directory.
+  2. Added `.internal/` to `.gitignore` so they remain preserved locally on the developer machine for pair-programming context while never being tracked by Git.
+  3. Enforce an inspection gate (`git ls-files`) prior to any public release or push to ensure only production-grade code, tests, and public documentation are committed.
+- **Key Takeaway/Prevention**: Never run indiscriminate `git add .` on a repository root without verifying that internal chat/planning artifacts are quarantined in a gitignored `.internal/` folder.
+
