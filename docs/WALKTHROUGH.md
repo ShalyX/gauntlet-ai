@@ -9,6 +9,8 @@ GauntletAI has fully deployed **Model C: Decentralized Slashing & Native On-Chai
 | Component | Target / Value | Network / Infrastructure | Status |
 | :--- | :--- | :--- | :--- |
 | **Intelligent Contract** | [`0x4b0baA8704BC7613805405AEdACA70ea74b54bD0`](https://genlayer-explorer.vercel.app/address/0x4b0baA8704BC7613805405AEdACA70ea74b54bD0) | GenLayer StudioNet (`61999`) | **DEPLOYED & ACTIVE** |
+| **GitHub Repository** | [`ShalyX/gauntlet-ai`](https://github.com/ShalyX/gauntlet-ai) | GitHub Public Repository | **COMMITTED & PUSHED** |
+| **Production Frontend** | [`frontend-teal-one-tqrxcb08xq.vercel.app`](https://frontend-teal-one-tqrxcb08xq.vercel.app) | Vercel Edge CDN (SSL/HTTPS) | **LIVE IN PRODUCTION** |
 | **Agent Enumeration** | `registered_agent_ids: DynArray[str]` / `get_all_agents()` | GenVM Storage | **NATIVE (Zero hardcoded candidates)** |
 | **Collateral Bond** | `MIN_STAKE_WEI = 0.010 GEN` (`10_000_000_000_000_000`) | GenVM Storage | **ENFORCED (Slashable)** |
 | **Challenge Bond** | `CHALLENGE_BOND_WEI = 0.005 GEN` (`5_000_000_000_000_000`) | GenVM Storage | **ACTIVE** |

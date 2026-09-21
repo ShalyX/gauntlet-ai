@@ -50,3 +50,7 @@ Thumbs.db
 
 # Local logs
 *.log
+
+# Internal Agent & Pair-Programming Planning Notes
+.internal/
+
