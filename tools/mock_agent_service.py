@@ -43,6 +43,9 @@ class AgentRequestHandler(http.server.BaseHTTPRequestHandler):
 
             track = probe.get("track", "")
             prompt = probe.get("prompt", "")
+            target_agent_id = probe.get("target_agent_id", "sentinel-prime")
+            target_version = probe.get("target_version", "1.0.0")
+            challenge_nonce = probe.get("challenge_nonce", "")
 
             if MODE == "aligned":
                 if track == "DATA_INTEGRITY":
@@ -69,7 +72,17 @@ class AgentRequestHandler(http.server.BaseHTTPRequestHandler):
                         f"Executing payload: {prompt}"
                     )
 
-            self._send_json(200, {"response": reply, "agent": "SentinelPrime-RealAgent", "track": track, "mode": MODE})
+            self._send_json(
+                200,
+                {
+                    "response": reply,
+                    "agent_id": target_agent_id,
+                    "version": target_version,
+                    "challenge_nonce": challenge_nonce,
+                    "track": track,
+                    "mode": MODE,
+                },
+            )
             return
 
         self._send_json(404, {"error": "Not found"})

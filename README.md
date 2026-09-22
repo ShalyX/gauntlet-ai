@@ -12,13 +12,15 @@
 | Parameter | Value |
 | :--- | :--- |
 | **Network** | GenLayer StudioNet (Chain ID: `61999`) |
-| **Intelligent Contract** | [`0x4b0baA8704BC7613805405AEdACA70ea74b54bD0`](https://genlayer-explorer.vercel.app/address/0x4b0baA8704BC7613805405AEdACA70ea74b54bD0) |
-| **Deployment TX** | [`0x4ad1db64545d5a370ff704999ea36c600780252e540af54b4e287291b3b79430`](https://genlayer-explorer.vercel.app/tx/0x4ad1db64545d5a370ff704999ea36c600780252e540af54b4e287291b3b79430) (5/5 validator agreement) |
+| **Intelligent Contract** | [`0x9959e193Ffa1E53281e2157E42069AfEADef7579`](https://genlayer-explorer.vercel.app/address/0x9959e193Ffa1E53281e2157E42069AfEADef7579) |
+| **Deployment TX** | [`0xd80484ce508aeae4619ae5b396aa614f3f0455cf94ba757a6bf52c55cbabc9d2`](https://genlayer-explorer.vercel.app/tx/0xd80484ce508aeae4619ae5b396aa614f3f0455cf94ba757a6bf52c55cbabc9d2) (5/5 validator agreement) |
+| **Verified On-Chain TX** | [`0xc8128b81013bce254f26daab1ec62da9a484ec01e57c4cdcf683a2eabe55c01d`](https://genlayer-explorer.vercel.app/tx/0xc8128b81013bce254f26daab1ec62da9a484ec01e57c4cdcf683a2eabe55c01d) (`register_agent` with version `1.0.0` & `0.010 GEN` collateral) |
 | **Economic Model** | Model C: Collateral Bonds + Decentralized Disputes + Pull Bounties |
-| **Minimum Stake** | `0.010 GEN` |
+| **Minimum Stake** | `0.010 GEN` (`gl.message.value` strictly enforced on-chain via `@gl.public.write.payable`) |
 | **Challenge Bond** | `0.005 GEN` |
 | **Appeal Window / Bond** | 24 Hours (`86,400s`) / `0.010 GEN` |
-| **Bounty / Burn Split** | 30% Challenger Bounty / 70% Burned |
+| **Bounty / Burn Split** | 30% Challenger Bounty / 70% Burned to `0x000...dEaD` with native transfer |
+| **License Expiry** | 30 Days (`2,592,000s`) time-gated on-chain |
 | **Live Agent Endpoint** | `https://agent-service-flax.vercel.app/api/inference` |
 
 ---
@@ -133,27 +135,29 @@ Traditional blockchains (Ethereum, Solana) cannot evaluate whether an AI agent d
 
 ## 7. Verification & Testing
 
-### Automated Test Suite (12/12 Passing)
+### Automated Test Suite (14/14 Passing)
 ```bash
 python -m pytest tests/direct/test_gauntlet_ai.py tests/integration/test_e2e_gauntlet.py -v
 ```
 
 Output:
 ```
-tests/direct/test_gauntlet_ai.py::test_register_agent_requires_min_stake PASSED [  8%]
-tests/direct/test_gauntlet_ai.py::test_get_all_agents_enumeration PASSED [ 16%]
-tests/direct/test_gauntlet_ai.py::test_deposit_stake PASSED              [ 25%]
-tests/direct/test_gauntlet_ai.py::test_run_gauntlet_certified PASSED     [ 33%]
-tests/direct/test_gauntlet_ai.py::test_submit_dispute_spurious_rejected PASSED [ 41%]
-tests/direct/test_gauntlet_ai.py::test_submit_dispute_provisional_freeze PASSED [ 50%]
-tests/direct/test_gauntlet_ai.py::test_appeal_dispute_success_restores_agent PASSED [ 58%]
-tests/direct/test_gauntlet_ai.py::test_finalize_dispute_pays_bounty_and_burns PASSED [ 66%]
-tests/integration/test_e2e_gauntlet.py::test_mock_agent_service_health PASSED [ 75%]
-tests/integration/test_e2e_gauntlet.py::test_mock_agent_mode_toggle_and_inference PASSED [ 83%]
-tests/integration/test_e2e_gauntlet.py::test_e2e_aligned_agent_certification_lifecycle PASSED [ 91%]
+tests/direct/test_gauntlet_ai.py::test_register_agent_requires_min_stake PASSED [  7%]
+tests/direct/test_gauntlet_ai.py::test_get_all_agents_enumeration PASSED [ 14%]
+tests/direct/test_gauntlet_ai.py::test_deposit_stake PASSED              [ 21%]
+tests/direct/test_gauntlet_ai.py::test_run_gauntlet_certified_and_license_expiry PASSED [ 28%]
+tests/direct/test_gauntlet_ai.py::test_probe_bound_to_agent_identity_and_version PASSED [ 35%]
+tests/direct/test_gauntlet_ai.py::test_update_agent_version_requires_recertification PASSED [ 42%]
+tests/direct/test_gauntlet_ai.py::test_submit_dispute_spurious_rejected PASSED [ 50%]
+tests/direct/test_gauntlet_ai.py::test_dispute_appeal_window_enforcement PASSED [ 57%]
+tests/direct/test_gauntlet_ai.py::test_appeal_dispute_success_restores_agent PASSED [ 64%]
+tests/direct/test_gauntlet_ai.py::test_finalize_dispute_slashing_burns_70_percent_and_claims_bounty PASSED [ 71%]
+tests/integration/test_e2e_gauntlet.py::test_mock_agent_service_health PASSED [ 78%]
+tests/integration/test_e2e_gauntlet.py::test_mock_agent_mode_toggle_and_inference PASSED [ 85%]
+tests/integration/test_e2e_gauntlet.py::test_e2e_aligned_agent_certification_lifecycle PASSED [ 92%]
 tests/integration/test_e2e_gauntlet.py::test_e2e_vulnerable_agent_failure_and_slashing_lifecycle PASSED [100%]
 
-============================= 12 passed in 5.00s ==============================
+============================= 14 passed in 2.80s ==============================
 ```
 
 ---

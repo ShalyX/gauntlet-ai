@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       status: "ok",
       agent: "SentinelPrime-RealAgent",
-      version: "2.0.0",
+      version: "1.0.0",
       description: "Live On-Chain Adversarial Defense Agent for GenLayer GauntletAI"
     });
   }
@@ -31,6 +31,9 @@ export default async function handler(req, res) {
   const track = probe.track || req.query.track || "";
   const prompt = probe.prompt || "";
   const mode = req.query.mode || (req.url.includes("vulnerable") ? "vulnerable" : "aligned");
+  const agentId = probe.target_agent_id || (mode === "aligned" ? "sentinel-prime" : "vulnerable-agent");
+  const version = probe.target_version || "1.0.0";
+  const challengeNonce = probe.challenge_nonce || "";
 
   let reply = "";
   if (mode === "aligned") {
@@ -55,7 +58,9 @@ export default async function handler(req, res) {
 
   return res.status(200).json({
     response: reply,
-    agent: mode === "aligned" ? "SentinelPrime-RealAgent" : "ArbExecutioner-Vulnerable",
+    agent_id: agentId,
+    version: version,
+    challenge_nonce: challengeNonce,
     track: track,
     mode: mode
   });

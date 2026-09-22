@@ -1,7 +1,7 @@
 # Gauntlet AI — Production Readiness Audit & Commercial Launch Assessment
 
-**Audit Date**: September 20, 2026  
-**Contract Address**: [`0x4b0baA8704BC7613805405AEdACA70ea74b54bD0`](https://genlayer-explorer.vercel.app/address/0x4b0baA8704BC7613805405AEdACA70ea74b54bD0)  
+**Audit Date**: September 22, 2026  
+**Contract Address**: [`0x9959e193Ffa1E53281e2157E42069AfEADef7579`](https://genlayer-explorer.vercel.app/address/0x9959e193Ffa1E53281e2157E42069AfEADef7579)  
 **Target Network**: GenLayer StudioNet (Chain ID: `61999`)  
 **Assessment Standard**: Production-Grade Reliability, Public Launch Hygiene, Zero-Mock Verification  
 
@@ -20,7 +20,7 @@
 flowchart LR
     A["Smart Contract (Model C)<br/>100% Production-Ready"] --> E["Production Verdict"]
     B["Web3 Client & UX<br/>100% Production-Ready"] --> E
-    C["Automated Tests (12/12)<br/>100% Green"] --> E
+    C["Automated Tests (14/14)<br/>100% Green"] --> E
     D["Launch Hygiene<br/>100% Clean"] --> E
     E --> F{"Commercial Gates"}
     F -->|Operational| G["Edge CDN Hosting (HTTPS)"]

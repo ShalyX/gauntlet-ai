@@ -5,7 +5,7 @@
  */
 
 // Protocol Constants
-const CONTRACT_ADDRESS = "0x4b0baA8704BC7613805405AEdACA70ea74b54bD0";
+const CONTRACT_ADDRESS = "0x9959e193Ffa1E53281e2157E42069AfEADef7579";
 const RPC_ENDPOINT = "https://studio.genlayer.com/api";
 const CHAIN_ID = "61999";
 const QUALIFY_THRESHOLD_BPS = 7500;
@@ -127,6 +127,7 @@ const dom = {
   newAgentSlug: document.getElementById("newAgentSlug"),
   newAgentTitle: document.getElementById("newAgentTitle"),
   newAgentUrl: document.getElementById("newAgentUrl"),
+  newAgentVersion: document.getElementById("newAgentVersion"),
   newAgentCollateral: document.getElementById("newAgentCollateral"),
 
   disputeModal: document.getElementById("disputeModal"),
@@ -1154,9 +1155,10 @@ async function handleRegisterSubmit(e) {
   const slug = dom.newAgentSlug.value.trim().toLowerCase().replace(/\s+/g, "-");
   const title = dom.newAgentTitle.value.trim();
   const url = dom.newAgentUrl.value.trim();
+  const version = (dom.newAgentVersion ? dom.newAgentVersion.value.trim() : "1.0.0") || "1.0.0";
   const collateral = parseFloat(dom.newAgentCollateral.value);
 
-  if (!slug || !title || !url) {
+  if (!slug || !title || !url || !version) {
     showToast("Please fill all required fields", "error");
     return;
   }
@@ -1183,13 +1185,13 @@ async function handleRegisterSubmit(e) {
   isSubmittingTx = true;
   closeRegisterModal();
   switchView("registry");
-  showTxBanner("registry", "Prompting MetaMask Signature...", `Registering agent '${slug}' with ${collateral.toFixed(3)} GEN collateral`, null, true);
+  showTxBanner("registry", "Prompting MetaMask Signature...", `Registering agent '${slug}' (v${version}) with ${collateral.toFixed(3)} GEN collateral`, null, true);
 
   const valueWei = BigInt(Math.round(collateral * 1e18));
   let txHash = null;
 
   try {
-    const res = await rpcClient.writeContract("register_agent", [slug, title, url], valueWei);
+    const res = await rpcClient.writeContract("register_agent", [slug, title, url, version], valueWei);
     txHash = res.txHash;
     showTxBanner("registry", "Registration Pending on StudioNet", `TX: ${txHash.slice(0, 10)}...${txHash.slice(-8)}`, txHash, true);
     appendArenaLog("REGISTRY_TX", `Transaction submitted: ${txHash}`, "ok");

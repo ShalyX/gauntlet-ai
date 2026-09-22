@@ -68,3 +68,38 @@ Continuous documentation of non-obvious issues, bugs, and design patterns discov
   2. Used the Chrome DevTools MCP (`navigate_page` to `file:///...` -> `take_screenshot`) to capture perfect, pixel-crisp, subpixel-antialiased 512x512 and 800x400 PNGs directly from the browser's Blink rendering engine.
 - **Key Takeaway/Prevention**: When image processing libraries are absent in the runtime environment, leverage headless browser / DevTools MCP capabilities to render HTML/SVG templates into production-quality raster assets.
 
+---
+
+### 2026-09-22: GenVM `@gl.public.write.payable` Decorator Requirement for Value-Bearing Methods
+- **Context/Problem**: Executing `client.writeContract()` with `value: 10000000000000000n` (0.010 GEN) to call `register_agent` failed during GenVM leader execution with: `ValueError: called non-payable method <function GauntletAI.register_agent> with non-zero value`.
+- **Root Cause**: In GenVM's Python SDK, functions decorated with only `@gl.public.write` reject any incoming transaction that carries `gl.message.value > 0` to prevent accidental loss of funds. Any method intended to receive native GEN must be explicitly decorated with `@gl.public.write.payable`.
+- **Solution/Better Way**:
+  - Decorate all value-receiving methods (`register_agent`, `deposit_stake`, `submit_dispute`, `appeal_dispute`) with `@gl.public.write.payable`.
+  - In `contracts/gauntlet_ai.py`, enforce `deposit_val = int(gl.message.value)` and reject transactions where `deposit_val < MIN_STAKE_WEI`.
+- **Key Takeaway/Prevention**: In GenLayer Intelligent Contracts, any method expecting `gl.message.value` MUST use `@gl.public.write.payable`. Without `.payable`, the GenVM runner raises `ValueError: called non-payable method with non-zero value`.
+
+---
+
+### 2026-09-22: Native Value Transfer Syntax in GenLayer Python SDK
+- **Context/Problem**: Performing on-chain asset transfers (slashing burn to `DEAD_ADDRESS` or bounty payout to challenger) requires understanding how GenVM serializes native ETH/GEN transfers.
+- **Root Cause**: GenVM does not use `gl.send()` or `gl.transfer()`. Instead, it uses typed EVM contract interfaces:
+  ```python
+  @gl.evm.contract_interface
+  class _TransferRecipient:
+      class View:
+          pass
+      class Write:
+          pass
+  ```
+  Transfer execution is called as `_TransferRecipient(Address(recipient)).emit_transfer(value=u256(amount))`.
+- **Solution/Better Way**: Defined `_TransferRecipient` in `contracts/gauntlet_ai.py` and wrapped `emit_transfer()` calls in graceful degradation to support both full EVM/GenVM token transfer nodes and sandbox environments (like StudioNet, which notes that token transfers are not yet activated on its test validator nodes).
+- **Key Takeaway/Prevention**: Follow the canonical `@gl.evm.contract_interface` pattern for EVM transfers in GenVM contracts, and account for sandbox network capabilities.
+
+---
+
+### 2026-09-22: Executing Value-Bearing Transactions via `genlayer deploy` Script Runner
+- **Context/Problem**: The `genlayer write` CLI command does not expose a `--value` flag and hardcodes `value: 0n` in `WriteAction`.
+- **Root Cause**: `genlayer-cli` v0.39.2 only allows setting `--fee-value`, not transaction call value (`gl.message.value`).
+- **Solution/Better Way**: GenLayer CLI provides a script runner: running `genlayer deploy --rpc <url>` without `--contract` executes ESM scripts in a `deploy/` folder, passing an authenticated, unlocked `client` object (`module.default(client)`). This client allows calling `client.writeContract({ address, functionName, args, value })` with arbitrary `value: BigInt(...)`.
+- **Key Takeaway/Prevention**: When CLI tooling lacks transaction parameter flags, leverage the built-in script runner in `deploy/` to interact with contracts using the authenticated client.
+

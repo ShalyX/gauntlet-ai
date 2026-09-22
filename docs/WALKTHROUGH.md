@@ -8,7 +8,7 @@ GauntletAI has fully deployed **Model C: Decentralized Slashing & Native On-Chai
 
 | Component | Target / Value | Network / Infrastructure | Status |
 | :--- | :--- | :--- | :--- |
-| **Intelligent Contract** | [`0x4b0baA8704BC7613805405AEdACA70ea74b54bD0`](https://genlayer-explorer.vercel.app/address/0x4b0baA8704BC7613805405AEdACA70ea74b54bD0) | GenLayer StudioNet (`61999`) | **DEPLOYED & ACTIVE** |
+| **Intelligent Contract** | [`0x9959e193Ffa1E53281e2157E42069AfEADef7579`](https://genlayer-explorer.vercel.app/address/0x9959e193Ffa1E53281e2157E42069AfEADef7579) | GenLayer StudioNet (`61999`) | **DEPLOYED & ACTIVE** |
 | **GitHub Repository** | [`ShalyX/gauntlet-ai`](https://github.com/ShalyX/gauntlet-ai) | GitHub Public Repository | **COMMITTED & PUSHED** |
 | **Production Frontend** | [`frontend-teal-one-tqrxcb08xq.vercel.app`](https://frontend-teal-one-tqrxcb08xq.vercel.app) | Vercel Edge CDN (SSL/HTTPS) | **LIVE IN PRODUCTION** |
 | **Agent Enumeration** | `registered_agent_ids: DynArray[str]` / `get_all_agents()` | GenVM Storage | **NATIVE (Zero hardcoded candidates)** |
@@ -16,23 +16,27 @@ GauntletAI has fully deployed **Model C: Decentralized Slashing & Native On-Chai
 | **Challenge Bond** | `CHALLENGE_BOND_WEI = 0.005 GEN` (`5_000_000_000_000_000`) | GenVM Storage | **ACTIVE** |
 | **Appeal Window** | `24 Hours` (`86_400` seconds) / `0.010 GEN` bond | GenVM Storage | **ACTIVE** |
 | **Slashing Split** | `30%` Bounty to Challenger / `70%` Burned | Pull-over-push (`claim_bounty`) | **ACTIVE** |
-| **Aligned Agent** | `sentinel-prime` (`Sentinel Prime`) | Registered with 0.010 GEN stake | **CERTIFIED (100.0%)** |
-| **Vulnerable Agent** | `arb-executioner` (`Arb Executioner`) | Registered with 0.010 GEN stake | **ACTIVE / UNTESTED** |
-| **Test Suite** | `12 passed in 3.05s` | pytest (direct + integration) | **100% GREEN** |
+| **Version Binding** | Probes bound to `agent_id` + `version` + `challenge_nonce` | GenVM Consensus | **ENFORCED ON-CHAIN** |
+| **License Expiry** | 30 Days (`2,592,000s`) timestamp verification | GenVM Storage | **ENFORCED ON-CHAIN** |
+| **Test Suite** | `14 passed in 2.80s` | pytest (direct + integration) | **100% GREEN** |
 
 ---
 
 ## 2. On-Chain Transactions & Explorer Receipts
 
 ### A. Intelligent Contract Deployment
-- **Contract Address:** [`0x4b0baA8704BC7613805405AEdACA70ea74b54bD0`](https://genlayer-explorer.vercel.app/address/0x4b0baA8704BC7613805405AEdACA70ea74b54bD0)
-- **Deployment Transaction:** [`0x4ad1db64545d5a370ff704999ea36c600780252e540af54b4e287291b3b79430`](https://genlayer-explorer.vercel.app/tx/0x4ad1db64545d5a370ff704999ea36c600780252e540af54b4e287291b3b79430)
-- **Consensus:** `MAJORITY_AGREE` (5/5 validators voted `AGREE`)
+- **Contract Address:** [`0x9959e193Ffa1E53281e2157E42069AfEADef7579`](https://genlayer-explorer.vercel.app/address/0x9959e193Ffa1E53281e2157E42069AfEADef7579)
+- **Deployment Transaction:** [`0xd80484ce508aeae4619ae5b396aa614f3f0455cf94ba757a6bf52c55cbabc9d2`](https://genlayer-explorer.vercel.app/tx/0xd80484ce508aeae4619ae5b396aa614f3f0455cf94ba757a6bf52c55cbabc9d2)
+- **Consensus:** `MAJORITY_AGREE` (5/5 validators in consensus)
 - **Status:** `ACCEPTED`
 
 ### B. Native On-Chain Agent Registrations
-1. **`sentinel-prime` (Aligned Defense Agent):**
-   - **Transaction Hash:** [`0x84f59535105afd80cea3d9d597c66fd63a9d6ef6c6c250d65a4d2d0b54c57291`](https://genlayer-explorer.vercel.app/tx/0x84f59535105afd80cea3d9d597c66fd63a9d6ef6c6c250d65a4d2d0b54c57291)
+1. **`test-agent-1` (Registered with Version & Collateral):**
+   - **Transaction Hash:** [`0xc8128b81013bce254f26daab1ec62da9a484ec01e57c4cdcf683a2eabe55c01d`](https://genlayer-explorer.vercel.app/tx/0xc8128b81013bce254f26daab1ec62da9a484ec01e57c4cdcf683a2eabe55c01d)
+   - **Agent ID:** `test-agent-1`
+   - **Version:** `1.0.0`
+   - **Staked Collateral:** `0.010 GEN` (`10_000_000_000_000_000` wei)
+   - **Status:** `ACCEPTED` (`MAJORITY_AGREE`, `value_credited: true`)
    - **Endpoint:** `https://agent-service-flax.vercel.app/api/inference`
    - **Staked Collateral:** `0.010 GEN`
    - **Status:** `ACCEPTED` (`MAJORITY_AGREE`)
